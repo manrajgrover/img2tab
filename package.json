@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ManrajGrover/Tablo/issues"
   },
-  "homepage": "https://github.com/ManrajGrover/Tablo#readme"
+  "homepage": "https://github.com/ManrajGrover/Tablo#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
 }
