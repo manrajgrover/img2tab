@@ -5,7 +5,6 @@ const source = require('vinyl-source-stream');
 const gutil = require('gulp-util');
 const babel = require('gulp-babel');
 
-
 gulp.task('browser', () => {
   browserify({ debug: false })
     .transform(babelify)
@@ -25,7 +24,7 @@ gulp.task('es6', () => {
 });
 
 gulp.task('watch', () => {
-  gulp.watch(['./src/*.js'], ['browser', 'es6']);
+  gulp.watch(['./src/*.js', './sample/example.js'], ['es6', 'browser']);
 });
 
 gulp.task('default', ['browser', 'es6']);
