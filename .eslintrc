@@ -2,6 +2,8 @@
   "extends": "airbnb",
   "rules": {
     "no-console": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "comma-dangle": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }
