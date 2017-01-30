@@ -32,6 +32,6 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "get-pixels": "^3.3.0"
+    "jimp": "^0.2.27"
   }
 }
