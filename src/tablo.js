@@ -1,4 +1,5 @@
 const jimp = require('jimp');
+const tabloUtils = require('./tabloUtils');
 
 class Tablo {
 
@@ -8,6 +9,7 @@ class Tablo {
         'Initialization failed. Please check file path passd to constructor.'
       );
     }
+
     this.image = image;
     this.colors = null;
     this.width = width;
@@ -17,35 +19,6 @@ class Tablo {
   _readImage() {
     return jimp.read(this.image)
                .catch(err => err);
-  }
-
-  _getPixelColors(image) {
-    const width = image.bitmap.width;
-    const height = image.bitmap.height;
-    const pixels = new Array(height);
-
-    for (let i = 0; i < height; i += 1) {
-      pixels[i] = new Array(width);
-    }
-
-    const data = image.bitmap.data;
-
-    const pixelCalculation = new Promise((resolve) => {
-      image.scan(0, 0, width, height, (x, y, idx) => {
-        const red = data[idx + 0];
-        const green = data[idx + 1];
-        const blue = data[idx + 2];
-        const alpha = data[idx + 3] / 255;
-
-        pixels[x][y] = `rgba(${red}, ${green}, ${blue}, ${alpha})`;
-
-        if (width - 1 === x && height - 1 === y) {
-          resolve(pixels);
-        }
-      });
-    });
-
-    return pixelCalculation;
   }
 
   _getImageTable(img) {
@@ -70,7 +43,7 @@ class Tablo {
   getTablo() {
     return (
       this._readImage()
-          .then(image => this._getPixelColors(image))
+          .then(image => tabloUtils.getPixelColors(image))
           .then(pixelColors => this._getImageTable(pixelColors))
     );
   }
