@@ -5,16 +5,23 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var jimp = require('jimp');
+var tabloUtils = require('./tabloUtils');
 
 var Tablo = function () {
   function Tablo(image) {
+    var width = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+    var height = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+
     _classCallCheck(this, Tablo);
 
     if (image === undefined || image === '') {
       throw new Error('Initialization failed. Please check file path passd to constructor.');
     }
+
     this.image = image;
     this.colors = null;
+    this.width = width;
+    this.height = height;
   }
 
   _createClass(Tablo, [{
@@ -25,42 +32,36 @@ var Tablo = function () {
       });
     }
   }, {
-    key: '_getPixelColors',
-    value: function _getPixelColors(image) {
-      var width = image.bitmap.width;
-      var height = image.bitmap.height;
-      var pixels = new Array(height);
+    key: '_getImageTable',
+    value: function _getImageTable(img) {
+      var _this = this;
 
-      for (var i = 0; i < height; i += 1) {
-        pixels[i] = new Array(width);
-      }
+      var pImageTable = new Promise(function (resolve) {
+        var imageTable = "<table border='0' cellpadding='0' cellspacing='0'>";
 
-      var data = image.bitmap.data;
-
-      var pixelCalculation = new Promise(function (resolve) {
-        image.scan(0, 0, width, height, function (x, y, idx) {
-          var red = data[idx + 0];
-          var green = data[idx + 1];
-          var blue = data[idx + 2];
-          var alpha = data[idx + 3] / 255;
-
-          pixels[x][y] = 'rgba(' + red + ', ' + green + ', ' + blue + ', ' + alpha + ')';
-
-          if (width - 1 === x && height - 1 === y) {
-            resolve(pixels);
+        for (var i = 0; i < img.length; i += 1) {
+          imageTable += '<tr>';
+          for (var j = 0; j < img[i].length; j += 1) {
+            imageTable += '<td height=\'' + _this.height + '\' width=\'' + _this.width + '\' style=\'background: ' + img[i][j] + ';\'>';
           }
-        });
+          imageTable += '</tr>';
+        }
+
+        imageTable += '</table>';
+        resolve(imageTable);
       });
 
-      return pixelCalculation;
+      return pImageTable;
     }
   }, {
     key: 'getTablo',
     value: function getTablo() {
-      var _this = this;
+      var _this2 = this;
 
       return this._readImage().then(function (image) {
-        return _this._getPixelColors(image);
+        return tabloUtils.getPixelColors(image);
+      }).then(function (pixelColors) {
+        return _this2._getImageTable(pixelColors);
       });
     }
   }]);
