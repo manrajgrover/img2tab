@@ -4,12 +4,12 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var TabloUtils = function () {
-  function TabloUtils() {
-    _classCallCheck(this, TabloUtils);
+var utils = function () {
+  function utils() {
+    _classCallCheck(this, utils);
   }
 
-  _createClass(TabloUtils, null, [{
+  _createClass(utils, null, [{
     key: "getPixelColors",
     value: function getPixelColors(image) {
       var width = image.bitmap.width;
@@ -41,7 +41,7 @@ var TabloUtils = function () {
     }
   }]);
 
-  return TabloUtils;
+  return utils;
 }();
 
-module.exports = TabloUtils;
+module.exports = utils;

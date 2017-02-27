@@ -5,14 +5,14 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var jimp = require('jimp');
-var tabloUtils = require('./tabloUtils');
+var utils = require('./utils');
 
-var Tablo = function () {
-  function Tablo(image) {
+var img2tab = function () {
+  function img2tab(image) {
     var width = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
     var height = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
 
-    _classCallCheck(this, Tablo);
+    _classCallCheck(this, img2tab);
 
     if (image === undefined || image === '') {
       throw new Error('Initialization failed. Please check file path passd to constructor.');
@@ -24,7 +24,7 @@ var Tablo = function () {
     this.height = height;
   }
 
-  _createClass(Tablo, [{
+  _createClass(img2tab, [{
     key: '_readImage',
     value: function _readImage() {
       return jimp.read(this.image).catch(function (err) {
@@ -54,19 +54,19 @@ var Tablo = function () {
       return pImageTable;
     }
   }, {
-    key: 'getTablo',
-    value: function getTablo() {
+    key: 'getTable',
+    value: function getTable() {
       var _this2 = this;
 
       return this._readImage().then(function (image) {
-        return tabloUtils.getPixelColors(image);
+        return utils.getPixelColors(image);
       }).then(function (pixelColors) {
         return _this2._getImageTable(pixelColors);
       });
     }
   }]);
 
-  return Tablo;
+  return img2tab;
 }();
 
-module.exports = Tablo;
+module.exports = img2tab;
