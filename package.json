@@ -1,11 +1,12 @@
 {
   "name": "img2tab",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Convert images to table, for emails and more",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src"
   },
+  "main": "dist/img2tab.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ManrajGrover/img2tab.git"
