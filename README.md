@@ -13,7 +13,7 @@ $ npm install img2tab
 
 ### Method available
 
-* `getTable`: Get HTML table for image given, returns a Promise
+* `getTable( 'path/to/image/or/url', width, height)`: Get HTML table for image given, returns a Promise
 
 ### How to use
 
@@ -22,7 +22,7 @@ Getting HTML Table for given image
 ```javascript
 const Img2Tab = require('img2tab');
 
-const instance = new Img2Tab('your image path/url');
+const instance = new Img2Tab('path/to/image/or/url');
 
 // Returns a Promise
 const imageTable = instance.getTable();
