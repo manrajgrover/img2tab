@@ -24,10 +24,11 @@ const Img2Tab = require('img2tab');
 
 const instance = new Img2Tab('your image path/url');
 
+// Returns a Promise
 const imageTable = instance.getTable();
 
 imageTable.then(data => console.log(data));
-// => String of HTML table
+// => String containing HTML table
 ```
 
 ## License
