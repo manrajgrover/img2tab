@@ -13,7 +13,7 @@ $ npm install img2tab
 
 ### Method available
 
-* `getTable( 'path/to/image/or/url', width, height)`: Get HTML table for image given, returns a Promise
+* `getTable( 'path/to/image/or/url', width, height )`: Get HTML table for image given, returns a Promise
 
 ### How to use
 
